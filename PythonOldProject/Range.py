@@ -1,0 +1,2 @@
+for a in range(0,200000000000000000000000000000000,10000):
+	print("Seni Seviyorum")
