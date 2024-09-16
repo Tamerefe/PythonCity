@@ -1,26 +1,21 @@
 from random import randrange
 
-crte = randrange(10)
-
+crte = randrange(11)
 i = 0
 
-gues = int(input("What was that my random number: "))
+gues = int(input("Guess the random number (between 0 and 10): "))
 
 while True:
-
     if gues == crte:
-        print("Congratulations {} is true number".format(gues))
+        print("Congratulations! {} is the correct number.".format(gues))
         break
-    elif gues <= crte:
+    elif gues < crte:
         print('Number too small')
-        gues = int(input(("Try Again: ")))
-    elif gues >= crte:
+    else:  # gues > crte
         print('Number too large')
-        gues = int(input(("Try Again: ")))
-    else:
-        gues = int(input(("Try Again: ")))
-        i += 1 
     
+    i += 1
     if i == 4:
-        print("Sorry Buddy Maybe Next Time Try It Different Way")
+        print("Sorry Buddy Maybe Next Time Try It. The number was {}.".format(crte))
         break
+    gues = int(input("Try Again: "))

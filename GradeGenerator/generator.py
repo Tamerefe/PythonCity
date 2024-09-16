@@ -1,5 +1,6 @@
 from random import randrange
 
+# Letter grade definitions
 aNote = "A"          # 85 - 100
 aMinusNote = "A-"    # 80 - 84
 bPlusNote = "B+"     # 75 - 79
@@ -14,13 +15,13 @@ dMinusNote = "D-"    # 35 - 49
 fNote = "F"          # 0 - 34
 ngNote = "NG"        # Attendance Problem
 
-differentclassNote = 0
-
+# Collect user notes
 midtermNote = int(input("Midterm Note: "))
 finalNote = int(input("Final Note: "))
 homeworkNote = int(input("Homework or More Note: "))
 
-totalNote = midtermNote + finalNote + homeworkNote
+# Assuming weights are 30% midterm, 50% final, 20% homework
+totalNote = round(midtermNote * 0.30 + finalNote * 0.50 + homeworkNote * 0.20)
 
 if totalNote > 100:
   print("Do you get a higher score than 100 seriously? no one has the intelligence you have!")
@@ -51,11 +52,6 @@ elif 34 >= totalNote >= 0:
 else:
   print("You will repeat the course due to absenteeism")
 
-
-totalNote = round((differentclassNote + totalNote)/25)
-
-print(totalNote)
-
 if  4 >= totalNote > 3.5: 
   print("You are eligible to become a high honor student")
 elif 3.5 > totalNote > 3: 
@@ -68,5 +64,3 @@ elif  1.8 > totalNote > 1:
   print("Department period repeat")
 elif  1 > totalNote: 
   print("Compulsory department change")
-
-

@@ -1,26 +1,26 @@
 from random import randrange
 
-coinr = randrange(100)
+coinr = randrange(1, 101)
 
 ttlslctcoin = 0
 
-slctcoin = input("You can select 50c 25c 10c 5c 1c: ")
+def get_valid_coin():
+    while True:
+        slctcoin = input("You can select 50c, 25c, 10c, 5c, 1c: ")
+        if slctcoin in ("50", "25", "10", "5", "1"):
+            return int(slctcoin)
+        else:
+            print("Invalid input. Please enter one of the following values: 50, 25, 10, 5, 1.")
 
-while True: 
-    if not (slctcoin in("50","25","10","5","1")):
-        slctcoin = input("Try Again, You can select 50c 25c 10c 5c 1c: ")
-        print("Please just write number not use c value:")
-    else:
-        slctcoin = int(slctcoin)
-        
-        ttlslctcoin += slctcoin
-        print("Your coin value is {}c".format(ttlslctcoin))
+while True:
+    slctcoin = get_valid_coin()
 
-        if ttlslctcoin == coinr:
-            print("Congratulations you won the game")
-            break
-        elif ttlslctcoin >= coinr:
-            print("Sorry you lose that value too much")
-            break
-        elif ttlslctcoin <= coinr:
-            slctcoin = input("You can select 50c 25c 10c 5c 1c: ")
+    ttlslctcoin += slctcoin
+    print(f"Your coin value is {ttlslctcoin}c")
+
+    if ttlslctcoin == coinr:
+        print("Congratulations! You won the game.")
+        break
+    elif ttlslctcoin > coinr:
+        print("Sorry, you have exceeded the target value. You lose.")
+        break

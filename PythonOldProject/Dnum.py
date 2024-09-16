@@ -9,7 +9,6 @@ while num >= 10:
     num = num // 10
 
     prfd *= prf
-
     if num < 10:
         num = prfd
         prfd = 1
