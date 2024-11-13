@@ -1,0 +1,30 @@
+from countryinfo import CountryInfo
+from colorama import init, Fore, Style
+
+init()
+
+country = CountryInfo(input("Enter country: "))
+
+print(Fore.GREEN + "Country:" + Style.RESET_ALL, country.info().get("name"))
+print(Fore.CYAN + "Capital:" + Style.RESET_ALL, country.capital())
+print(Fore.YELLOW + "Population:" + Style.RESET_ALL, country.info().get("population"))
+print(Fore.MAGENTA + "Area:" + Style.RESET_ALL, country.area())
+print(Fore.RED + "Borders:" + Style.RESET_ALL, country.borders())
+print(Fore.BLUE + "Timezones:" + Style.RESET_ALL, country.timezones())
+print(Fore.GREEN + "Currencies:" + Style.RESET_ALL, country.currencies())
+print(Fore.CYAN + "Languages:" + Style.RESET_ALL, country.languages())
+print(Fore.YELLOW + "Region:" + Style.RESET_ALL, country.region())
+print(Fore.MAGENTA + "Subregion:" + Style.RESET_ALL, country.subregion())
+print(Fore.RED + "Demonym:" + Style.RESET_ALL, country.demonym())
+print(Fore.BLUE + "Native Name:" + Style.RESET_ALL, country.native_name())
+print(Fore.GREEN + "Calling Codes:" + Style.RESET_ALL, country.calling_codes())
+print(Fore.CYAN + "Lat, Long:" + Style.RESET_ALL, country.latlng())
+print(Fore.YELLOW + "Translations:" + Style.RESET_ALL, country.translations())
+print(Fore.MAGENTA + "Alt Spellings:" + Style.RESET_ALL, country.alt_spellings())
+print(Fore.RED + "Region:" + Style.RESET_ALL, country.region())
+print(Fore.BLUE + "Subregion:" + Style.RESET_ALL, country.subregion())
+print(Fore.GREEN + "Demonym:" + Style.RESET_ALL, country.demonym())
+print(Fore.CYAN + "Native Name:" + Style.RESET_ALL, country.native_name())
+print(Fore.YELLOW + "Wikipedia:" + Style.RESET_ALL, country.wiki())
+print(Fore.MAGENTA + "ISO Codes:" + Style.RESET_ALL, country.iso())
+print(Fore.RED + "Internet TLD:" + Style.RESET_ALL, country.tld())

@@ -20,3 +20,16 @@
 - Some old Projects
 ## TemperatureUnitConverter
 - A tool for converting temperature units. Converts between Celsius, Fahrenheit, Kelvin, and other temperature scales.
+## CalcDerivatives
+- A tool used to calculate derivatives in math method
+```pip install sympy``` 
+## CheckInternetSpeed
+- Checking the speed of your internet connection. Provides download and upload speeds.
+```pip install speedtest-cli``` 
+## PeriodicTable
+- Accessing information about elements in the periodic table. Useful for chemistry studies and research.
+```pip install periodictable```  
+## CountryCheck
+- A tool for retrieving information about countries. Can be used for geographical and statistical analysis
+```pip install countryinfo ```
+```pip install plotly ```
