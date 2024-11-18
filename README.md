@@ -10,8 +10,6 @@
 - A game where users try to guess a randomly chosen number within a specific range. Provides feedback on guesses and accuracy.
 ## GWCGame
 - In this classic puzzle, a farmer needs to transport a wolf, a goat, and a cabbage across a river using a boat. The challenge is to ensure that none of the items are harmed or eaten during the process. The farmer can only carry himself and one item at a time in the boat. The goal is to get all three items across the river safely.
-## Heart
-- A heart-themed application. 
 ## ICakeStore
 - An application simulating a food store. Users can browse different types of food and place orders.
 ## MaxMinNumber
@@ -30,6 +28,15 @@
 - Accessing information about elements in the periodic table. Useful for chemistry studies and research.
 ```pip install periodictable```  
 ## CountryCheck
-- A tool for retrieving information about countries. Can be used for geographical and statistical analysis
-```pip install countryinfo ```
-```pip install plotly ```
+- A tool for retrieving information about countries. Can be used for geographical and statistical analysis.
+```pip install countryinfo ``` 
+```pip install plotly ``` 
+```pip install pycountry ```
+## CalendarMonth
+- A tool for displaying a calendar month. Useful for scheduling and planning.
+## EmojiCreator
+- An application for creating custom emojis. Allows users to design and save their own emojis.
+```pip install emoji ``` 
+## GrammerCorrection
+- This program works on correcting grammer errors.
+```pip install textblob ``` 
