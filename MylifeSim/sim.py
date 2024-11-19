@@ -130,7 +130,6 @@ class LifeSimulation:
         
         # Sınırları kontrol et
         self.character.health = max(0, min(100, self.character.health))
-        # self.character.money = max(0, self.character.money)  # Negatif olmayı engelleyen kodu kaldırıyoruz
         self.character.happiness = max(0, min(100, self.character.happiness))
         self.character.intelligence = max(0, min(100, self.character.intelligence))
         self.character.social_skill = max(0, min(100, self.character.social_skill))
