@@ -40,3 +40,9 @@
 ## GrammerCorrection
 - This program works on correcting grammer errors.
 ```pip install textblob ``` 
+## BatteryCheck
+- This program works on battery check level.
+```pip install psutil ``` 
+## FinDetailsMovies
+- This program finds the details for selecting movies and series.
+```pip install IMDbPY ``` 
