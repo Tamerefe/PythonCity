@@ -64,3 +64,9 @@
 - A tool for retrieving the IP address of your device.
 ## PhoneDirectory
 - An application for managing contact information and phone numbers.
+## Palindrome
+- An application for calculation palindrome
+## CheckFrequency
+- An application for check frequency
+## Stopwatch
+- An application stopwatch
