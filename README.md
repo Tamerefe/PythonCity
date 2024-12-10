@@ -6,11 +6,6 @@
 - A tool for finding a specific element or the first few elements of the Fibonacci sequence. The Fibonacci sequence is a mathematical series where each number is the sum of the two preceding ones.
 ## GradeGenerator
 - Application to calculate grades and academic scores using the letter method. Can be used in educational environments or evaluation processes.
-## Guess Random Number
-- A game where users try to guess a randomly chosen number within a specific range. Provides feedback on guesses and accuracy.
-- An application that allows you to find the number you predict on a card containing 6 numbers.
-## GWCGame
-- In this classic puzzle, a farmer needs to transport a wolf, a goat, and a cabbage across a river using a boat. The challenge is to ensure that none of the items are harmed or eaten during the process. The farmer can only carry himself and one item at a time in the boat. The goal is to get all three items across the river safely.
 ## ICakeStore
 - An application simulating a food store. Users can browse different types of food and place orders.
 ## MaxMinNumber
@@ -58,8 +53,6 @@
 ## HeatMap
 - A tool for creating heat maps for data visualization. Useful for representing data density or intensity.
 ```pip install seaborn ```
-## Targetter
-- A turn-based combat game where you have to defend yourself by killing enemies with targets.
 ## FindMyIP
 - A tool for retrieving the IP address of your device.
 ## PhoneDirectory
@@ -70,3 +63,11 @@
 - An application for check frequency
 ## Stopwatch
 - An application stopwatch
+## TaxCurrying
+- The function totalcost takes one argument price and returns another function applytax. applytax takes one argument tax_rate and returns another function applydiscount. applydiscount takes one argument discount and performs the calculation.
+## SendNotification
+- An app sending a notification
+```pip install plyer ```
+## Table
+- An app create a python table
+```pip install rich ```
