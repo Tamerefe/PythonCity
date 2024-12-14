@@ -1,4 +1,5 @@
 import os
+from currency_converter import CurrencyConverter
 
 class Customer():
     def __init__(self, ID, PASSWORD, NAME):
@@ -31,6 +32,9 @@ class Bank():
                 return customer
         return None
 
+def currencyconverter(amount, fromto, tocurrency):
+    return CurrencyConverter().convert(amount, fromto, tocurrency)
+
 def main_menu():
     os.system("cls")
     print("""
@@ -39,6 +43,7 @@ def main_menu():
 
     1) I am a Customer
     2) I Want to Become a Customer
+    3) Search Current Currency Rates
 
     """)
 
@@ -135,6 +140,14 @@ while True:
         PASSWORD = input("Enter Password: ")
         bank.register_customer(ID, PASSWORD, NAME)
         input("Press Enter to Return to Main Menu")
+
+    elif choice == 3:
+        
+        amount = int(input("Enter Amount: "))
+        fromto = input("Enter Currency to Convert From: ")
+        tocurrency = input("Enter Currency to Convert To: ")
+        print("{} {} is equal to {} {}".format(amount,fromto,currencyconverter(amount, fromto, tocurrency),tocurrency))
+        break
 
     else:
         print("Something Went Wrong, Maybe You Made an Invalid Choice")
