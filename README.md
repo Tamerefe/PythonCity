@@ -19,11 +19,11 @@
 ```pip install plotly ``` 
 ```pip install pycountry ```
 ```pip install geopy ```
-## CalendarMonth
-- A tool for displaying a calendar month. Useful for scheduling and planning.
-## EmojiCreator
-- An application for creating custom emojis. Allows users to design and save their own emojis.
-```pip install emoji ``` 
+## HolidayCalendar
+- A tool for displaying a holiday in calendar month. Useful for scheduling and planning.
+    - Blue: Public Holidays, 
+    - Red: Official Holidays, 
+    - Yellow: National Holidays
 ## GrammerCorrection
 - This program works on correcting grammer errors.
 ```pip install textblob ``` 
@@ -33,6 +33,7 @@
 ## BankApp
 - An application for managing bank accounts, transactions, and financial records.
 ```pip install currencyconverter ```
+```pip install rich ```
 ## MathCalculations
 - A simple calculator for performing basic arithmetic operations.
 - An application for calculation palindrome
@@ -42,7 +43,8 @@
 - A tool for finding a specific element or the first few elements of the Fibonacci sequence. The Fibonacci sequence is a mathematical series where each number is the sum of the two preceding ones.
 - A tool for finding triangle details
 ## RestaurAnppt
-- An application for managing restaurant orders, menus, and reservations.
+- An application for managing restaurant orders, menus, and reservations. 
+```pip install qrcode[pil] ```
 ## LibrApp
 - A library management system for tracking books, borrowers, and due dates.
 ## HeatMap
@@ -54,14 +56,9 @@
 - An application for check frequency
 ## Stopwatch
 - An application stopwatch
-## TaxCurrying
-- The function totalcost takes one argument price and returns another function applytax. applytax takes one argument tax_rate and returns another function applydiscount. applydiscount takes one argument discount and performs the calculation.
 ## SendNotification
 - An app sending a notification
 ```pip install plyer ```
-## Table
-- An app create a python table
-```pip install rich ```
 ## ProgressBar
 - An app create Strong and Downloading Bar
 ```pip install tqdm ```

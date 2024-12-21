@@ -1,4 +1,6 @@
 import os
+import qrcode
+from PIL import Image
 
 tables = {a: 0 for a in range(20)}
 
@@ -51,6 +53,7 @@ def show_menu():
     1) View Tables
     2) Add Account
     3) Remove Account
+    4) Menu (QR)
     Q) Exit
     """)
 
@@ -72,6 +75,19 @@ def main():
             add()
         elif choice == "3":
             remove()
+        elif choice == "4":
+            qr = qrcode.QRCode(
+                version=1,
+                error_correction=qrcode.constants.ERROR_CORRECT_L,
+                box_size=10,
+                border=4,
+            )
+            qr.add_data("https://www.google.com")
+            qr.make(fit=True)
+            img = qr.make_image(fill_color="black", back_color="white")
+            img.save("./RestaurAnppt/qr.png")
+            img.show()
+            break
         elif choice == "q":
             print("Program is closing")
             break

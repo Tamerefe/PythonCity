@@ -2,7 +2,10 @@ from random import randrange
 
 coinr = randrange(1, 101)
 
-ttlslctcoin = 0
+def totalcoin(selected_coin):
+    def applycoin(current_total):
+        return current_total + selected_coin
+    return applycoin
 
 def get_valid_coin():
     while True:
@@ -12,10 +15,11 @@ def get_valid_coin():
         else:
             print("Invalid input. Please enter one of the following values: 50, 25, 10, 5, 1.")
 
+ttlslctcoin = 0
+
 while True:
     slctcoin = get_valid_coin()
-
-    ttlslctcoin += slctcoin
+    ttlslctcoin = totalcoin(slctcoin)(ttlslctcoin)
     print(f"Your coin value is {ttlslctcoin}c")
 
     if ttlslctcoin == coinr:

@@ -1,5 +1,21 @@
 import os
+import sqlite3
 from currency_converter import CurrencyConverter
+from rich.table import Table
+from rich.console import Console
+
+conn = sqlite3.connect('./BankApp/database.db')
+cursor = conn.cursor()
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS customers (
+    id TEXT PRIMARY KEY,
+    password TEXT,
+    name TEXT,
+    balance INTEGER
+    )
+''')
+conn.commit()
 
 class Customer():
     def __init__(self, ID, PASSWORD, NAME):
@@ -10,10 +26,14 @@ class Customer():
 
     def deposit(self, amount):
         self.balance += amount
+        cursor.execute('UPDATE customers SET balance = ? WHERE id = ?', (self.balance, self.id))
+        conn.commit()
 
     def withdraw(self, amount):
         if amount <= self.balance:
             self.balance -= amount
+            cursor.execute('UPDATE customers SET balance = ? WHERE id = ?', (self.balance, self.id))
+            conn.commit()
             return True
         else:
             return False
@@ -23,13 +43,24 @@ class Bank():
         self.customers = list()
 
     def register_customer(self, ID, PASSWORD, NAME):
+        cursor.execute('SELECT id FROM customers WHERE id = ?', (ID,))
+        if cursor.fetchone():
+            print("Customer ID already exists. Please choose a different ID.")
+            return
         self.customers.append(Customer(ID, PASSWORD, NAME))
+        cursor.execute('''
+        INSERT INTO customers (id, password, name, balance) VALUES (?, ?, ?, ?)
+        ''', (ID, PASSWORD, NAME, 0))
+        conn.commit()
         print("Welcome to our Internet Banking")
 
     def find_customer(self, ID):
-        for customer in self.customers:
-            if customer.id == ID:
-                return customer
+        cursor.execute('SELECT id, password, name, balance FROM customers WHERE id = ?', (ID,))
+        result = cursor.fetchone()
+        if result:
+            customer = Customer(result[0], result[1], result[2])
+            customer.balance = result[3]
+            return customer
         return None
 
 def currencyconverter(amount, fromto, tocurrency):
@@ -44,12 +75,15 @@ def main_menu():
     1) I am a Customer
     2) I Want to Become a Customer
     3) Search Current Currency Rates
+    4) Customer List (Admin Only)
 
     """)
 
 def customer_menu(customer):
     while True:
         os.system("cls")
+        cursor.execute('SELECT balance FROM customers WHERE id = ?', (customer.id,))
+        customer.balance = cursor.fetchone()[0]
         print("                                 Welcome Mr/Ms {}".format(customer.name))
         print("""
 
@@ -63,6 +97,8 @@ def customer_menu(customer):
         choice = input("Enter Transaction Number: ")
 
         if choice == "1":
+            cursor.execute('SELECT balance FROM customers WHERE id = ?', (customer.id,))
+            customer.balance = cursor.fetchone()[0]
             print("Your Balance: {}".format(customer.balance))
             input("Press Enter to Return to Main Menu!")
 
@@ -110,6 +146,22 @@ def customer_menu(customer):
             print("Invalid Choice, Please Try Again")
             input("Press Enter to Return to Main Menu")
 
+def display_customer_list():
+    cursor.execute('SELECT id, name, balance FROM customers')
+    customers = cursor.fetchall()
+    
+    console = Console()
+    table = Table(title="Customer List")
+    
+    table.add_column("ID", style="blue", no_wrap=True)
+    table.add_column("Name", style="purple")
+    table.add_column("Balance", style="yellow")
+    
+    for customer in customers:
+        table.add_row(customer[0], customer[1], str(customer[2]))
+    
+    console.print(table)
+
 bank = Bank()
 
 while True:
@@ -148,6 +200,12 @@ while True:
         tocurrency = input("Enter Currency to Convert To: ")
         print("{} {} is equal to {} {}".format(amount,fromto,currencyconverter(amount, fromto, tocurrency),tocurrency))
         break
+
+    elif choice == 4:
+        adminpass = int(input("Enter Password: "))
+        if(adminpass == 1234):
+            display_customer_list()    
+        input("Press Enter to Return to Main Menu")
 
     else:
         print("Something Went Wrong, Maybe You Made an Invalid Choice")
