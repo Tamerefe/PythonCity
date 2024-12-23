@@ -1,4 +1,5 @@
 import os
+from textblob import TextBlob
 
 book_list = []
 
@@ -8,6 +9,10 @@ menu = """
 1) Donate a Book
 2) Borrow a Book
 3) View All Books
+4) Add Book
+5) Remove Book
+6) Show Books
+7) Grammar Check Tool
 Q) Exit
 
 """
@@ -33,6 +38,23 @@ def list_books(book_list: list):
         print(f"Book Title: {book[0]}       Author: {book[1]}")
     input("Press Enter to return to the main menu!")
 
+def add_book(list, book):
+    list += [book]
+    print("Book Successfully Added")
+    input("Press Enter to Return to Main Menu!")
+
+def remove_book():
+    pass
+
+def show_books(list):
+    for book in list:
+        print("Book Name >>>>>>>> {} ".format(book))
+    input("Press Enter to Return to Main Menu!")
+
+def correct(text):
+    corrected = str(TextBlob(text).correct())
+    return corrected
+
 def main():
     while True:
         os.system("cls")
@@ -54,6 +76,22 @@ def main():
 
         elif choice == "3":
             list_books(book_list)
+
+        elif choice == "4":
+            book_name = input("Book Name: ").strip()
+            add_book(book_list, book_name)
+
+        elif choice == "5":
+            remove_book()
+
+        elif choice == "6":
+            show_books(book_list)
+        
+        elif choice == "7":
+            text = input("Enter a sentence: ")
+            corrected = correct(text)
+            print(f"Corrected: {corrected}")
+            break
 
         elif choice == "q":
             print("Goodbye! We hope to see you again...")

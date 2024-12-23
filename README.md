@@ -1,5 +1,3 @@
-## Coin Exchange
-- This game involves selecting coin values to match a randomly generated target value. The user is prompted to select coin denominations (50c, 25c, 10c, 5c, or 1c) and accumulate their total. The objective is to match the randomly set target amount exactly with the selected coins.
 ## DogCatAgeCalculator
 - A calculator that converts a dog's or cat's age into human years. Useful for understanding a pet's age in terms of human lifespan.
 ## GradeGenerator
@@ -24,9 +22,6 @@
     - Blue: Public Holidays, 
     - Red: Official Holidays, 
     - Yellow: National Holidays
-## GrammerCorrection
-- This program works on correcting grammer errors.
-```pip install textblob ``` 
 ## FinDetailsMovies
 - This program finds the details for selecting movies and series.
 ```pip install IMDbPY``` 
@@ -41,12 +36,14 @@
 - A tool used to calculate derivatives in math method
 ```pip install sympy```
 - A tool for finding a specific element or the first few elements of the Fibonacci sequence. The Fibonacci sequence is a mathematical series where each number is the sum of the two preceding ones.
+- A tool integral of a logarithmich function
 - A tool for finding triangle details
 ## RestaurAnppt
 - An application for managing restaurant orders, menus, and reservations. 
 ```pip install qrcode[pil] ```
 ## LibrApp
-- A library management system for tracking books, borrowers, and due dates.
+- A library management system for tracking books, borrowers, and due dates and on correcting grammer errors.
+```pip install textblob ``` 
 ## HeatMap
 - A tool for creating heat maps for data visualization. Useful for representing data density or intensity.
 ```pip install seaborn ```
