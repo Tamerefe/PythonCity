@@ -17,6 +17,7 @@
 ```pip install plotly ``` 
 ```pip install pycountry ```
 ```pip install geopy ```
+```pip install pytrends ```
 ## HolidayCalendar
 - A tool for displaying a holiday in calendar month. Useful for scheduling and planning.
     - Blue: Public Holidays, 
@@ -25,10 +26,6 @@
 ## FinDetailsMovies
 - This program finds the details for selecting movies and series.
 ```pip install IMDbPY``` 
-## BankApp
-- An application for managing bank accounts, transactions, and financial records.
-```pip install currencyconverter ```
-```pip install rich ```
 ## MathCalculations
 - A simple calculator for performing basic arithmetic operations.
 - An application for calculation palindrome
@@ -60,3 +57,6 @@
 - An app create Strong and Downloading Bar
 ```pip install tqdm ```
 ```pip install rich ```
+## CreateBarcode
+- An app create barcode for using market apps
+```pip install ipython ```
