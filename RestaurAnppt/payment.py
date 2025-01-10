@@ -78,13 +78,20 @@ def main():
         elif choice == "4":
             qr = qrcode.QRCode(
                 version=1,
-                error_correction=qrcode.constants.ERROR_CORRECT_L,
+                error_correction=qrcode.constants.ERROR_CORRECT_H,  # Changed to high error correction
                 box_size=10,
                 border=4,
             )
             qr.add_data("https://www.google.com")
             qr.make(fit=True)
-            img = qr.make_image(fill_color="black", back_color="white")
+            img = qr.make_image(fill_color="black", back_color="white").convert('RGB')
+
+            logo = Image.open("./RestaurAnppt/logo.png")
+            logo = logo.resize((128, 128))
+
+            pos = ((img.size[0] - logo.size[0]) // 2, (img.size[1] - logo.size[1]) // 2)
+            img.paste(logo, pos, logo)
+
             img.save("./RestaurAnppt/qr.png")
             img.show()
             break

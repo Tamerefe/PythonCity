@@ -35,6 +35,7 @@
 - A tool for finding a specific element or the first few elements of the Fibonacci sequence. The Fibonacci sequence is a mathematical series where each number is the sum of the two preceding ones.
 - A tool integral of a logarithmich function
 - A tool for finding triangle details
+- A tool decimal number to roman number converter
 ## RestaurAnppt
 - An application for managing restaurant orders, menus, and reservations. 
 ```pip install qrcode[pil] ```
