@@ -1,4 +1,4 @@
-def add(x, y):
+def adding(x, y):
     return x + y
 
 def subtract(x, y):
@@ -7,9 +7,7 @@ def subtract(x, y):
 def multiply(x, y):
     return x * y
 
-def divide(x, y):
-    if y == 0:
-        return "Error: Division by zero"
+def dividing(x, y):
     return x / y
 
 def power(x, y):
@@ -38,18 +36,26 @@ def get_operation():
             return op
         print("Invalid operation. Please choose from +, -, *, /, **, %, //.")
 
+def check_frequency(fr):
+    if 20 < fr <= 20000:
+        return "Audio Frequency"
+    elif 30000 <= fr <= 300000000:
+        return "Radio Frequency"
+    else:
+        return "Not a valid frequency"
+
 a = get_number("Enter the first number: ")
 b = get_number("Enter the second number: ")
 c = get_operation()
 
 if c == "+":
-    print("Result:", add(a, b))
+    print("Result:", adding(a, b))
 elif c == "-":
     print("Result:", subtract(a, b))
 elif c == "*":
     print("Result:", multiply(a, b))
 elif c == "/":
-    print("Result:", divide(a, b))
+    print("Result:", dividing(a, b))
 elif c == "**":
     print("Result:", power(a, b))
 elif c == "%":
@@ -58,3 +64,9 @@ elif c == "//":
     print("Result:", floor_division(a, b))
 else:
     print("Invalid operation")
+
+try:
+    fr = float(input("Enter the frequency: "))
+    print(check_frequency(fr))
+except ValueError:
+    print("Please enter a valid number")

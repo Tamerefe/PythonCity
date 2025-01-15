@@ -1,5 +1,7 @@
 import os
+import time
 from textblob import TextBlob
+import tkinter as tk
 
 book_list = []
 
@@ -13,6 +15,7 @@ menu = """
 5) Remove Book
 6) Show Books
 7) Grammar Check Tool
+8) Study with Stopwatch
 Q) Exit
 
 """
@@ -55,6 +58,48 @@ def correct(text):
     corrected = str(TextBlob(text).correct())
     return corrected
 
+def study_with_stopwatch():
+    stopwatch = StopWatch()
+    stopwatch.mainloop()
+
+class StopWatch(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title('Stopwatch')
+        self.geometry('300x100')
+        self.time = 0
+        self.running = False
+        self.label = tk.Label(self, text='0:00:00', font=('Helvetica', 48))
+        self.label.pack()
+        self.button = tk.Button(self, text='Start', command=self.start_stop)
+        self.button.pack()
+        self.reset_button = tk.Button(self, text='Reset', command=self.reset)
+        self.reset_button.pack()
+
+    def start_stop(self):
+        self.running = not self.running
+        if self.running:
+            self.button.config(text='Stop')
+            self.update()
+        else:
+            self.button.config(text='Start')
+
+    def update(self):
+        if self.running:
+            self.time += 1
+            minutes = self.time // 60
+            seconds = self.time % 60
+            hours = minutes // 60
+            minutes %= 60
+            self.label.config(text=f'{hours}:{minutes:02d}:{seconds:02d}')
+            self.after(1000, self.update)
+
+    def reset(self):
+        self.time = 0
+        self.label.config(text='0:00:00')
+        self.button.config(text='Start')
+        self.running = False
+
 def main():
     while True:
         os.system("cls")
@@ -91,7 +136,10 @@ def main():
             text = input("Enter a sentence: ")
             corrected = correct(text)
             print(f"Corrected: {corrected}")
-            break
+            input("Press Enter to return to the main menu!")
+
+        elif choice == "8":
+            study_with_stopwatch()
 
         elif choice == "q":
             print("Goodbye! We hope to see you again...")
@@ -101,5 +149,5 @@ def main():
             print("Invalid input")
             input("Press Enter to return to the main menu!")
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
