@@ -38,6 +38,8 @@
 - **Cinema** 
     - This program finds the details for selecting movies and series.
     ```pip install IMDbPY``` 
+    - CinEmote: "Emoji Movies" is a fun and interactive guessing game where players use emoji clues to identify famous movies. Each set of emojis represents a film's title, plot, or iconic elements, challenging players' creativity and movie knowledge. Perfect for movie enthusiasts and casual players alike, this game combines the simplicity of emojis with the excitement of a movie trivia challenge. Test your skills, compete with friends, and see who’s the ultimate cinephile! 🎬✨
+    ```pip install emoji ```
 <br>
 
 - **Consulate** 
@@ -55,12 +57,6 @@
 
 ## Extras
 
-### HolidayCalendar
-- A tool for displaying a holiday in calendar month. Useful for scheduling and planning.
-    - Blue: Public Holidays, 
-    - Red: Official Holidays, 
-    - Yellow: National Holidays
-
 ### HeatMap
 - A tool for creating heat maps for data visualization. Useful for representing data density or intensity.
 ```pip install seaborn ```
@@ -73,3 +69,22 @@
 ### CreateBarcode
 - An app create barcode for using market apps
 ```pip install ipython ```
+
+## Bot
+
+- **MyLifeSim** is a life simulation game where players can experience the journey of a character from birth to adulthood. Players make decisions that affect various aspects of their character's life, including health, money, happiness, intelligence, social skills, career experience, physical strength, and hobby skills.
+
+## Features
+
+- **Randomized Character Creation**: Characters are created with random attributes, gender, and country.
+- **Dynamic Life Events**: Experience a variety of life events that can positively or negatively impact your character.
+- **Attribute Management**: Manage and balance different attributes to ensure your character's well-being and success.
+- **Aging System**: Characters age over time, and players must adapt to new challenges and opportunities.
+
+## How to Play
+
+1. Start the game.
+2. Create your character with randomized attributes.
+3. Make decisions and experience life events as your character ages.
+4. Manage your character's attributes to keep them healthy, happy, and successful.
+5. Continue playing until your character's life comes to an end.
