@@ -1,7 +1,13 @@
 import os
 import time
+import sqlite3
+import hashlib
 from textblob import TextBlob
 import tkinter as tk
+import barcode
+from barcode.writer import ImageWriter
+from PIL import Image
+from IPython.display import display
 
 book_list = []
 
@@ -13,12 +19,20 @@ menu = """
 3) View All Books
 4) Add Book
 5) Remove Book
-6) Show Books
-7) Grammar Check Tool
-8) Study with Stopwatch
+6) Grammar Check Tool
+7) Study with Stopwatch
 Q) Exit
 
 """
+
+# Create or connect to the database
+conn = sqlite3.connect('./Builds/Library/Books/booklist.db')
+c = conn.cursor()
+
+# Create the books table if it doesn't exist
+c.execute('''CREATE TABLE IF NOT EXISTS books
+             (title TEXT, author TEXT)''')
+conn.commit()
 
 def donate_book(book: tuple, book_list: list):
     book_list.append(book)
@@ -28,31 +42,67 @@ def donate_book(book: tuple, book_list: list):
 def check_book(book: tuple, book_list: list) -> bool:
     return book in book_list
 
-def borrow_book(book: tuple, book_list: list):
-    if check_book(book, book_list):
-        book_list.remove(book)
-        print("You have successfully borrowed the book. Happy reading!")
+def borrow_book(book_title: str, book_list: list):
+    borrower_name = input("Enter your name: ").strip()
+    borrow_duration = input("Enter the duration you want to borrow the book for (in days): ").strip()
+    c.execute("SELECT title, author FROM books WHERE title = ?", (book_title,))
+    book = c.fetchone()
+    if book:
+        if book in book_list:
+            book_list.remove(book)
+        c.execute("DELETE FROM books WHERE title = ? AND author = ?", book)
+        conn.commit()
+        
+        barcode_file = f"./Builds/Library/Books/Barcode/{book[0]}.png"
+        if os.path.exists(barcode_file):
+            os.remove(barcode_file)
+        
+        print(f"{borrower_name}, you have successfully borrowed the book for {borrow_duration} days. Happy reading!")
     else:
         print("The book you requested is not available.")
     input("Press Enter to return to the main menu!")
 
 def list_books(book_list: list):
-    for book in book_list:
+    c.execute("SELECT title, author FROM books")
+    books = c.fetchall()
+    for book in books:
         print(f"Book Title: {book[0]}       Author: {book[1]}")
     input("Press Enter to return to the main menu!")
 
-def add_book(list, book):
-    list += [book]
+def generate_barcode_number(title: str, author: str) -> str:
+    unique_string = title + author
+    hash_object = hashlib.sha256(unique_string.encode())
+    return hash_object.hexdigest()[:12]  # Use the first 12 characters of the hash
+
+def add_book(book_list: list, book: tuple):
+    book_list.append(book)
     print("Book Successfully Added")
+    
+    barcode_number = generate_barcode_number(book[0], book[1])
+    code_class = barcode.get_barcode_class('code128')
+    code = code_class(barcode_number, writer=ImageWriter())
+    barcode_file = code.save(f"./Builds/Library/Books/Barcode/{book[0]}")  # Include book title in file name
+    
+    # Save the book to the database
+    c.execute("INSERT INTO books (title, author) VALUES (?, ?)", book)
+    conn.commit()
+    
     input("Press Enter to Return to Main Menu!")
 
-def remove_book():
-    pass
-
-def show_books(list):
-    for book in list:
-        print("Book Name >>>>>>>> {} ".format(book))
-    input("Press Enter to Return to Main Menu!")
+def remove_book(book_list: list):
+    title = input("Enter the title of the book to remove: ").strip()
+    author = input("Enter the author of the book to remove: ").strip()
+    book = (title, author)
+    
+    if check_book(book, book_list):
+        book_list.remove(book)
+        c.execute("DELETE FROM books WHERE title = ? AND author = ?", book)
+        conn.commit()
+        print("Book successfully removed.")
+    else:
+        print("The book you want to remove is not in the list.")
+    
+    input("Press Enter to return to the main menu!")
 
 def correct(text):
     corrected = str(TextBlob(text).correct())
@@ -115,30 +165,27 @@ def main():
 
         elif choice == "2":
             title = input("Book Title: ").strip()
-            author = input("Author: ").strip()
-            book = (title, author)
-            borrow_book(book, book_list)
+            borrow_book(title, book_list)
 
         elif choice == "3":
             list_books(book_list)
 
         elif choice == "4":
-            book_name = input("Book Name: ").strip()
-            add_book(book_list, book_name)
+            title = input("Book Title: ").strip()
+            author = input("Author: ").strip()
+            book = (title, author)
+            add_book(book_list, book)
 
         elif choice == "5":
-            remove_book()
-
-        elif choice == "6":
-            show_books(book_list)
+            remove_book(book_list)
         
-        elif choice == "7":
+        elif choice == "6":
             text = input("Enter a sentence: ")
             corrected = correct(text)
             print(f"Corrected: {corrected}")
             input("Press Enter to return to the main menu!")
 
-        elif choice == "8":
+        elif choice == "7":
             study_with_stopwatch()
 
         elif choice == "q":
@@ -148,6 +195,8 @@ def main():
         else:
             print("Invalid input")
             input("Press Enter to return to the main menu!")
+
+    conn.close()
 
 if __name__ == '__main__':
     main()

@@ -1,4 +1,7 @@
 from random import randrange
+from rich.progress import Progress
+import time
+import os
 
 class myColors:
     ResetAll = "\033[0m"
@@ -98,5 +101,12 @@ totalMoney += earnMoney - costMoney
 totalMoney -= 1241.33 * customer / 100
 totalMoney = round(totalMoney, 2)
 
-print(f"{myColors.LightYellow}Today's Special Customer is:\n{myColors.ResetAll}", customerList[spcust])
+
+with Progress() as progress:
+    task = progress.add_task("[red]Processing...", total=20)
+    while not progress.finished:
+        progress.update(task, advance=1)
+        time.sleep(0.1)
+os.system("cls")
+print(f"{myColors.LightYellow}\nToday's Special Customer is:\n{myColors.ResetAll}", customerList[spcust])
 print(f"{myColors.LightCyan}Total Money:{myColors.ResetAll}", totalMoney, f"{myColors.LightGreen}${myColors.ResetAll}")
