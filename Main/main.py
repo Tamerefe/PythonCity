@@ -1,114 +1,97 @@
 import sys
 import os
 
-# Add the Builds directory to the system path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'Builds'))
+# Proje kök dizinini al
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-# Add the Bot directory to the system path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'Bot'))
+# Gerekli dizinleri sys.path'e ekle
+sys.path.append(os.path.join(BASE_DIR, 'Builds'))
+sys.path.append(os.path.join(BASE_DIR, 'Bot'))
 
-# Now you can import modules from the Builds and Bot directories
-from Cinema.FinDetailsMovies import fdire
-from Consulate import current, detail, find, map, regionsearch, weather, zip
-from Library import lib
-from Pastry import store
-from Restaurant import payment
-from School.GradeGenerator import generator
-from School.MathCalculations import decimaltoroman, derivatives, fibo, logaritmic, math_and_frequency, MaximusMinimusSikitus, palindrome, triangle
-from School.PeriodicTable import peri
-from Veterinary.DogCatAgeCalculator import doggypussy
-from sim import LifeSimulation, Character
-from Cinema.CinEmote import emote
+# Modülleri içe aktar
+try:
+    from Cinema.FinDetailsMovies import fdire
+    from Consulate import maps
+    from Library import lib
+    from Pastry import store
+    from Restaurant import payment
+    from School.GradeGenerator import generator
+    from School.MathCalculations import (
+        decimaltoroman, derivatives, fibo, logaritmic, 
+        math_and_frequency, MaximusMinimusSikitus, palindrome, triangle
+    )
+    from School.PeriodicTable import peri
+    from Veterinary.DogCatAgeCalculator import doggypussy
+    from sim import LifeSimulation, Character
+    from Cinema.CinEmote import emote
+except ImportError as e:
+    print(f"Module import error: {e}")
+    sys.exit(1)
+
+# Menü seçenekleri
+MENU_OPTIONS = {
+    '1': ('Cinema - FinDetailsMovies', fdire, 'some_function', "Enter the movie name: "),
+    '2': ('Cinema - Emote', emote, 'textToEmote', "Enter text to convert to emoji: "),
+    '3': ('Consulate', maps, 'some_function', None),
+    '4': ('Library', lib, 'some_function', None),
+    '5': ('Pastry - Store', store, 'some_function', None),
+    '6': ('Restaurant - Payment', payment, 'some_function', None),
+    '7': ('School - Grade Generator', generator, 'some_function', None),
+    '8': ('School - Math Calculations - Decimal to Roman', decimaltoroman, 'some_function', None),
+    '9': ('School - Math Calculations - Derivatives', derivatives, 'some_function', None),
+    '10': ('School - Math Calculations - Fibonacci', fibo, 'some_function', None),
+    '11': ('School - Math Calculations - Logarithmic', logaritmic, 'some_function', None),
+    '12': ('School - Math Calculations - Math and Frequency', math_and_frequency, 'some_function', None),
+    '13': ('School - Math Calculations - Maximus Minimus Sikitus', MaximusMinimusSikitus, 'some_function', None),
+    '14': ('School - Math Calculations - Palindrome', palindrome, 'some_function', None),
+    '15': ('School - Math Calculations - Triangle', triangle, 'some_function', None),
+    '16': ('School - Periodic Table', peri, 'some_function', None),
+    '17': ('Veterinary - Dog Cat Age Calculator', doggypussy, 'some_function', None),
+    '18': ('Life Simulation', None, None, None),
+}
 
 def display_menu():
-    print("Select a module to access:")
-    print("1. Cinema - FinDetailsMovies")
-    print("2. Cinema - Emote")
-    print("3. Consulate - Current")
-    print("4. Consulate - Detail")
-    print("5. Consulate - Find")
-    print("6. Consulate - Map")
-    print("7. Consulate - Region Search")
-    print("8. Consulate - Weather")
-    print("9. Consulate - Zip")
-    print("10. Library")
-    print("11. Pastry - Store")
-    print("12. Restaurant - Payment")
-    print("13. School - Grade Generator")
-    print("14. School - Math Calculations - Decimal to Roman")
-    print("15. School - Math Calculations - Derivatives")
-    print("16. School - Math Calculations - Fibonacci")
-    print("17. School - Math Calculations - Logarithmic")
-    print("18. School - Math Calculations - Math and Frequency")
-    print("19. School - Math Calculations - Maximus Minimus Sikitus")
-    print("20. School - Math Calculations - Palindrome")
-    print("21. School - Math Calculations - Triangle")
-    print("22. School - Periodic Table")
-    print("23. Veterinary - Dog Cat Age Calculator")
-    print("24. Life Simulation")
+    """Menüyü ekrana yazdırır."""
+    print("\nSelect a module to access:")
+    for key, (desc, _, _, _) in MENU_OPTIONS.items():
+        print(f"{key}. {desc}")
     print("0. Exit")
 
 def main():
     while True:
         display_menu()
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice: ").strip()
+
+        if not choice:  # Kullanıcı boş giriş yaparsa, tekrar menüyü göster
+            print("Invalid input. Please select a valid option.")
+            continue
+
         if choice == '0':
+            print("Exiting program...")
             break
-        elif choice == '1':
-            print(fdire.some_function())
-        elif choice == '2':
-            text = input("Enter text to convert to emoji: ")
-            print(emote.textToEmote(text))
-        elif choice == '3':
-            print(current.some_function())
-        elif choice == '4':
-            print(detail.some_function())
-        elif choice == '5':
-            print(find.some_function())
-        elif choice == '6':
-            print(map.some_function())
-        elif choice == '7':
-            print(regionsearch.some_function())
-        elif choice == '8':
-            print(weather.some_function())
-        elif choice == '9':
-            print(zip.some_function())
-        elif choice == '10':
-            print(lib.some_function())
-        elif choice == '11':
-            print(store.some_function())
-        elif choice == '12':
-            print(payment.some_function())
-        elif choice == '13':
-            print(generator.some_function())
-        elif choice == '14':
-            print(decimaltoroman.some_function())
-        elif choice == '15':
-            print(derivatives.some_function())
-        elif choice == '16':
-            print(fibo.some_function())
-        elif choice == '17':
-            print(logaritmic.some_function())
-        elif choice == '18':
-            print(math_and_frequency.some_function())
-        elif choice == '19':
-            print(MaximusMinimusSikitus.some_function())
-        elif choice == '20':
-            print(palindrome.some_function())
-        elif choice == '21':
-            print(triangle.some_function())
-        elif choice == '22':
-            print(peri.some_function())
-        elif choice == '23':
-            print(doggypussy.some_function())
-        elif choice == '24':
-            character = Character()
-            simulation = LifeSimulation(character)
-            character.show_status()
-            while simulation.play_turn():
-                user_input = input("Advance the year: ")
-                if user_input.lower() == 'q':
-                    break
+
+        if choice in MENU_OPTIONS:
+            desc, module, func_name, prompt = MENU_OPTIONS[choice]
+
+            try:
+                if module and func_name:
+                    func = getattr(module, func_name, None)
+                    if callable(func):
+                        arg = input(prompt).strip() if prompt else None
+                        result = func(arg) if arg else func()
+                        print(result)
+                    else:
+                        print(f"Error: {func_name} not found in {desc}.")
+                elif choice == '18':
+                    character = Character()
+                    simulation = LifeSimulation(character)
+                    character.show_status()
+                    while simulation.play_turn():
+                        user_input = input("Advance the year (press Q to quit): ").strip().lower()
+                        if user_input == 'q':
+                            break
+            except Exception as e:
+                print(f"An error occurred in {desc}: {e}")
         else:
             print("Invalid choice. Please try again.")
 
