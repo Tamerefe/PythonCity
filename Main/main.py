@@ -1,99 +1,118 @@
-import sys
 import os
 
-# Proje kök dizinini al
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-
-# Gerekli dizinleri sys.path'e ekle
-sys.path.append(os.path.join(BASE_DIR, 'Builds'))
-sys.path.append(os.path.join(BASE_DIR, 'Bot'))
-
-# Modülleri içe aktar
-try:
-    from Cinema.FinDetailsMovies import fdire
-    from Consulate import maps
-    from Library import lib
-    from Pastry import store
-    from Restaurant import payment
-    from School.GradeGenerator import generator
-    from School.MathCalculations import (
-        decimaltoroman, derivatives, fibo, logaritmic, 
-        math_and_frequency, MaximusMinimusSikitus, palindrome, triangle
-    )
-    from School.PeriodicTable import peri
-    from Veterinary.DogCatAgeCalculator import doggypussy
-    from sim import LifeSimulation, Character
-    from Cinema.CinEmote import emote
-except ImportError as e:
-    print(f"Module import error: {e}")
-    sys.exit(1)
-
-# Menü seçenekleri
-MENU_OPTIONS = {
-    '1': ('Cinema - FinDetailsMovies', fdire, 'some_function', "Enter the movie name: "),
-    '2': ('Cinema - Emote', emote, 'textToEmote', "Enter text to convert to emoji: "),
-    '3': ('Consulate', maps, 'some_function', None),
-    '4': ('Library', lib, 'some_function', None),
-    '5': ('Pastry - Store', store, 'some_function', None),
-    '6': ('Restaurant - Payment', payment, 'some_function', None),
-    '7': ('School - Grade Generator', generator, 'some_function', None),
-    '8': ('School - Math Calculations - Decimal to Roman', decimaltoroman, 'some_function', None),
-    '9': ('School - Math Calculations - Derivatives', derivatives, 'some_function', None),
-    '10': ('School - Math Calculations - Fibonacci', fibo, 'some_function', None),
-    '11': ('School - Math Calculations - Logarithmic', logaritmic, 'some_function', None),
-    '12': ('School - Math Calculations - Math and Frequency', math_and_frequency, 'some_function', None),
-    '13': ('School - Math Calculations - Maximus Minimus Sikitus', MaximusMinimusSikitus, 'some_function', None),
-    '14': ('School - Math Calculations - Palindrome', palindrome, 'some_function', None),
-    '15': ('School - Math Calculations - Triangle', triangle, 'some_function', None),
-    '16': ('School - Periodic Table', peri, 'some_function', None),
-    '17': ('Veterinary - Dog Cat Age Calculator', doggypussy, 'some_function', None),
-    '18': ('Life Simulation', None, None, None),
-}
-
-def display_menu():
-    """Menüyü ekrana yazdırır."""
-    print("\nSelect a module to access:")
-    for key, (desc, _, _, _) in MENU_OPTIONS.items():
-        print(f"{key}. {desc}")
+def show_menu():
+    print("Welcome to PythonCity!")
+    print("Choose an application to run:")
+    print("1. Cinema")
+    print("2. Restaurant")
+    print("3. Library")
+    print("4. Pastry")
+    print("5. Veterinary")
+    print("6. School")
+    print("7. Consulate")
+    print("8. Mnos")
+    print("9. Extras")
+    print("10. Bot")
     print("0. Exit")
 
-def main():
-    while True:
-        display_menu()
-        choice = input("Enter your choice: ").strip()
+def run_application(choice):
+    if choice == '1':
+        os.system('python ../Builds/Cinema/cinema.py')
+    elif choice == '2':
+        os.system('python ../Builds/Restaurant/payment.py')
+    elif choice == '3':
+        os.system('python ../Builds/Library/lib.py')
+    elif choice == '4':
+        os.system('python ../Builds/Pastry/store.py')
+    elif choice == '5':
+        os.system('python ../Builds/Veterinary/DogCatAgeCalculator/doggypussy.py')
+    elif choice == '6':
+        school_menu()
+    elif choice == '7':
+        os.system('python ../Builds/Consulate/maps.py')
+    elif choice == '8':
+        os.system('python ../Builds/Mnos/PhoneDirectory/iPhone.py')
+    elif choice == '9':
+        extras_menu()
+    elif choice == '10':
+        os.system('python ../Bot/sim.py')
+    elif choice == '0':
+        print("Exiting...")
+        exit()
+    else:
+        print("Invalid choice. Please try again.")
 
-        if not choice:  # Kullanıcı boş giriş yaparsa, tekrar menüyü göster
-            print("Invalid input. Please select a valid option.")
-            continue
+def school_menu():
+    print("School Applications:")
+    print("1. Grade Generator")
+    print("2. Math Calculations")
+    print("3. Periodic Table")
+    choice = input("Enter your choice: ")
+    if choice == '1':
+        os.system('python ../Builds/School/GradeGenerator/generator.py')
+    elif choice == '2':
+        math_calculations_menu()
+    elif choice == '3':
+        os.system('python ../Builds/School/PeriodicTable/peri.py')
+    else:
+        print("Invalid choice. Returning to main menu.")
 
-        if choice == '0':
-            print("Exiting program...")
-            break
+def math_calculations_menu():
+    print("Math Calculations:")
+    print("1. Decimal to Roman")
+    print("2. Derivatives")
+    print("3. Fibonacci")
+    print("4. Logarithmic Integration")
+    print("5. Basic Math and Frequency")
+    print("6. Maximus Minimus")
+    print("7. Palindrome")
+    print("8. Triangle Details")
+    choice = input("Enter your choice: ")
+    if choice == '1':
+        os.system('python ../Builds/School/MathCalculations/decimaltoroman.py')
+    elif choice == '2':
+        os.system('python ../Builds/School/MathCalculations/derivatives.py')
+    elif choice == '3':
+        os.system('python ../Builds/School/MathCalculations/fibo.py')
+    elif choice == '4':
+        os.system('python ../Builds/School/MathCalculations/logaritmic.py')
+    elif choice == '5':
+        os.system('python ../Builds/School/MathCalculations/math_and_frequency.py')
+    elif choice == '6':
+        os.system('python ../Builds/School/MathCalculations/MaximusMinimusSikitus.py')
+    elif choice == '7':
+        os.system('python ../Builds/School/MathCalculations/palindrome.py')
+    elif choice == '8':
+        os.system('python ../Builds/School/MathCalculations/triangle.py')
+    else:
+        print("Invalid choice. Returning to school menu.")
 
-        if choice in MENU_OPTIONS:
-            desc, module, func_name, prompt = MENU_OPTIONS[choice]
-
-            try:
-                if module and func_name:
-                    func = getattr(module, func_name, None)
-                    if callable(func):
-                        arg = input(prompt).strip() if prompt else None
-                        result = func(arg) if arg else func()
-                        print(result)
-                    else:
-                        print(f"Error: {func_name} not found in {desc}.")
-                elif choice == '18':
-                    character = Character()
-                    simulation = LifeSimulation(character)
-                    character.show_status()
-                    while simulation.play_turn():
-                        user_input = input("Advance the year (press Q to quit): ").strip().lower()
-                        if user_input == 'q':
-                            break
-            except Exception as e:
-                print(f"An error occurred in {desc}: {e}")
+def extras_menu():
+    print("Extras:")
+    print("1. HeatMap")
+    print("2. ProgressBar")
+    print("3. CreateBarcode")
+    choice = input("Enter your choice: ")
+    if choice == '1':
+        os.system('python ../Extras/HeatMap/heat.py')
+    elif choice == '2':
+        print("ProgressBar options:")
+        print("1. Strong ProgressBar")
+        print("2. Downloading Bar")
+        sub_choice = input("Enter your choice: ")
+        if sub_choice == '1':
+            os.system('python -m tqdm')
+        elif sub_choice == '2':
+            os.system('python -m rich.progress')
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid choice. Returning to extras menu.")
+    elif choice == '3':
+        os.system('python -m ipython')
+    else:
+        print("Invalid choice. Returning to main menu.")
 
 if __name__ == "__main__":
-    main()
+    while True:
+        show_menu()
+        choice = input("Enter your choice: ")
+        run_application(choice)
