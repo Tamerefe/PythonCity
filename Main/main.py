@@ -10,9 +10,7 @@ def show_menu():
     print("5. Veterinary")
     print("6. School")
     print("7. Consulate")
-    print("8. Mnos")
-    print("9. Extras")
-    print("10. Bot")
+    print("8. Bot")
     print("0. Exit")
 
 def run_application(choice):
@@ -31,10 +29,6 @@ def run_application(choice):
     elif choice == '7':
         os.system('python ../Builds/Consulate/maps.py')
     elif choice == '8':
-        os.system('python ../Builds/Mnos/PhoneDirectory/iPhone.py')
-    elif choice == '9':
-        extras_menu()
-    elif choice == '10':
         os.system('python ../Bot/sim.py')
     elif choice == '0':
         print("Exiting...")
@@ -86,30 +80,6 @@ def math_calculations_menu():
         os.system('python ../Builds/School/MathCalculations/triangle.py')
     else:
         print("Invalid choice. Returning to school menu.")
-
-def extras_menu():
-    print("Extras:")
-    print("1. HeatMap")
-    print("2. ProgressBar")
-    print("3. CreateBarcode")
-    choice = input("Enter your choice: ")
-    if choice == '1':
-        os.system('python ../Extras/HeatMap/heat.py')
-    elif choice == '2':
-        print("ProgressBar options:")
-        print("1. Strong ProgressBar")
-        print("2. Downloading Bar")
-        sub_choice = input("Enter your choice: ")
-        if sub_choice == '1':
-            os.system('python -m tqdm')
-        elif sub_choice == '2':
-            os.system('python -m rich.progress')
-        else:
-            print("Invalid choice. Returning to extras menu.")
-    elif choice == '3':
-        os.system('python -m ipython')
-    else:
-        print("Invalid choice. Returning to main menu.")
 
 if __name__ == "__main__":
     while True:
